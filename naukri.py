@@ -30,7 +30,7 @@ modifiedResumePath = "modified_resume.pdf"
 # Update your naukri username and password here before running
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
-mob = "1234567890"  # Type your mobile number here
+mob = "7003411604"  # Type your mobile number here
 
 # False if you dont want to add Random HIDDEN chars to your resume
 updatePDF = True
