@@ -2,7 +2,7 @@ name: Naukri Automation
 
 on:
   schedule:
-    - cron: '21 21 * * *'   # Runs daily at 9:00 UTC
+    - cron: '53 21 * * *'   # Runs daily at 9:00 UTC
     - cron: '0 14 * * *'  # Runs daily at 14:00 UTC
     - cron: '0 19 * * *'  # Runs daily at 19:00 UTC
 
@@ -26,6 +26,8 @@ jobs:
 
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1.2.0
+        with:
+          install-chromedriver: true
 
       - name: Install dependencies
         run: |
