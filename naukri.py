@@ -23,9 +23,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager as CM
 
 # Add folder Path of your resume
-originalResumePath = "original_resume.pdf"
+originalResumePath = r"./Pratik_Chowdhury_Data_Engineer.pdf"
 # Add Path where modified resume should be saved
-modifiedResumePath = "modified_resume.pdf"
+modifiedResumePath = r"./Pratik_Chowdhury_Data_Engineer.pdf"
 
 # Update your naukri username and password here before running
 username = os.getenv('NAUKRI_USERNAME')
