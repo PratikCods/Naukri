@@ -30,7 +30,7 @@ modifiedResumePath = "modified_resume.pdf"
 # Update your naukri username and password here before running
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
-mob = "7003411604"  # Type your mobile number here
+mob = "1234567890"  # Type your mobile number here
 
 # False if you dont want to add Random HIDDEN chars to your resume
 updatePDF = True
@@ -389,7 +389,7 @@ def main():
     log_msg("-----Naukri.py Script Run Begin-----")
     driver = None
     try:
-        status, driver = naukriLogin(headless=False)
+        status, driver = naukriLogin()
         if status:
             UpdateProfile(driver)
             if os.path.exists(originalResumePath):
