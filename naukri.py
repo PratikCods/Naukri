@@ -387,6 +387,8 @@ def UploadResume(driver, resumePath):
 
 def main():
     log_msg("-----Naukri.py Script Run Begin-----")
+    log_msg(username)
+    log_msg(password)
     driver = None
     try:
         status, driver = naukriLogin()
