@@ -389,7 +389,7 @@ def main():
     log_msg("-----Naukri.py Script Run Begin-----")
     driver = None
     try:
-        status, driver = naukriLogin(headless=True)
+        status, driver = naukriLogin(headless=False)
         if status:
             UpdateProfile(driver)
             if os.path.exists(originalResumePath):
