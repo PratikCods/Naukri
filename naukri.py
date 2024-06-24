@@ -28,8 +28,8 @@ originalResumePath = r"./Pratik_Chowdhury_Data_Engineer.pdf"
 modifiedResumePath = r"./Pratik_Chowdhury_Data_Engineer.pdf"
 
 # Update your naukri username and password here before running
-username = os.getenv('NAUKRI_USERNAME')
-password = os.getenv('NAUKRI_PASSWORD')
+username = "sandyhammer31@gmail.com"
+password = "No,0b!#23?"
 mob = "1234567890"  # Type your mobile number here
 
 # False if you dont want to add Random HIDDEN chars to your resume
