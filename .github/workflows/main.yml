@@ -2,7 +2,7 @@ name: Naukri Automation
 
 on:
   schedule:
-    - cron: '36,45 18 * * *'   # Runs daily at 22:30 UTC
+    - cron: '20,35 19 * * *'   # Runs daily at 22:30 UTC
 
 jobs:
   build:
