@@ -1,3 +1,5 @@
+name: Naukri Automation
+
 on:
   schedule:
     - cron: '15 11 * * *'   # Runs daily at 22:30 UTC
