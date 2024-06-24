@@ -2,9 +2,9 @@ name: Naukri Automation
 
 on:
   schedule:
-    - cron: '30 22 * * *'   # Runs daily at 21:53 UTC
-    - cron: '0 23 * * *'    # Runs daily at 14:00 UTC
-    - cron: '0 0 * * *'    # Runs daily at 19:00 UTC
+    - cron: '22 10 * * *'   # Runs daily at 22:30 UTC
+    - cron: '0 23 * * *'    # Runs daily at 23:00 UTC
+    - cron: '0 0 * * *'     # Runs daily at 00:00 UTC
 
 jobs:
   build:
@@ -32,13 +32,15 @@ jobs:
       - name: Install Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y wget curl gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable=114.0.5735.90-1
 
       - name: Install ChromeDriver
         run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
-          wget -N http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+          wget -N https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip -d /usr/local/bin
           rm chromedriver_linux64.zip
 
