@@ -2,7 +2,7 @@ name: Naukri Automation
 
 on:
   schedule:
-    - cron: '30 15 * * *'   # Runs daily at 22:30 UTC
+    - cron: '50,59 17 * * *'   # Runs daily at 22:30 UTC
 
 jobs:
   build:
@@ -33,6 +33,11 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
 
-      - name: Test
+      - name: Install xvfb
+        run: sudo apt-get install -y xvfb
+
+      - name: Run Selenium tests with xvfb
         run: |
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1920x1080x24 &
           python3 naukri.py
