@@ -2,7 +2,7 @@ name: Naukri Automation
 
 on:
   schedule:
-    - cron: '40,50 8 * * *'
+    - cron: '10,20 9 * * *'
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1.2.0
         with:
-          chrome-version: 114
+          chrome-version: 1270635
 
       - name: Install dependencies
         run: |
