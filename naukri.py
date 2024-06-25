@@ -21,6 +21,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager as CM
+from PIL import Image
+from io import BytesIO
+import base64
 
 # Add folder Path of your resume
 originalResumePath = r"./Pratik_Chowdhury_Data_Engineer.pdf"
@@ -47,6 +50,13 @@ logging.basicConfig(
 os.environ["WDM_LOCAL"] = "1"
 os.environ["WDM_LOG_LEVEL"] = "0"
 
+
+# Function to take screenshot
+def take_screenshot(driver, name='screenshot'):
+    screenshot = driver.get_screenshot_as_base64()
+    image = Image.open(BytesIO(base64.b64decode(screenshot)))
+    image.save(f'{name}.png')
+    log_msg(f'Screenshot taken: {name}.png')
 
 def log_msg(message):
     """Print to console and store to Log"""
@@ -188,6 +198,7 @@ def naukriLogin(headless=False):
 
         if "naukri" in driver.title.lower():
             log_msg("Website Loaded Successfully.")
+            take_screenshot(driver, 'website_loaded')
 
         emailFieldElement = None
         if is_element_present(driver, By.ID, username_locator):
@@ -198,6 +209,7 @@ def naukriLogin(headless=False):
             loginButton = GetElement(driver, login_btn_locator, locator="XPATH")
         else:
             log_msg("None of the elements found to login.")
+            take_screenshot(driver, 'login_elements_not_found')
 
         if emailFieldElement is not None:
             emailFieldElement.clear()
@@ -210,7 +222,8 @@ def naukriLogin(headless=False):
             time.sleep(1)
 
             # Added click to Skip button
-            print("Checking Skip button")
+            log_msg("Checking Skip button")
+            take_screenshot(driver, 'after_login')
 
             if WaitTillElementPresent(driver, skip_locator, "XPATH", 10):
                 GetElement(driver, skip_locator, "XPATH").click()
@@ -220,13 +233,16 @@ def naukriLogin(headless=False):
                 CheckPoint = GetElement(driver, "ff-inventory", locator="ID")
                 if CheckPoint:
                     log_msg("Naukri Login Successful")
+                    take_screenshot(driver, 'login_successful')
                     status = True
                     return (status, driver)
                 else:
                     log_msg("Unknown Login Error")
+                    take_screenshot(driver, 'login_error')
                     return (status, driver)
             else:
                 log_msg("Unknown Login Error")
+                take_screenshot(driver, 'login_error')
                 return (status, driver)
 
     except Exception as e:
