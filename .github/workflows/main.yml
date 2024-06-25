@@ -2,11 +2,10 @@ name: Naukri Automation
 
 on:
   schedule:
-    - cron: '0,15,30 7 * * *'
+    - cron: '40,50 8 * * *'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,7 +25,7 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1.2.0
         with:
-          chrome-version: 1270653
+          chrome-version: 114
 
       - name: Install dependencies
         run: |
@@ -44,3 +43,10 @@ jobs:
           export DISPLAY=:99
           Xvfb :99 -screen 0 1920x1080x24 &
           python3 naukri.py
+
+      - name: Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: '*.png'
